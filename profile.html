@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - TAIPING STUDY HARD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="image/0.jpg">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        // حماية الصفحة: إذا لم يسجل الدخول يعود للرئيسية
+        if(localStorage.getItem('isLogged') !== 'true') window.location.href = 'index.html';
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-right">
+            <div class="logo">TAIPING <span>STUDY HARD</span></div>
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="searchLessons()" placeholder="ابحث عن درس أو مادة...">
+        </div>
+    </nav>
+
+    <div class="page-layout">
+        <aside class="side-menu">
+            <div class="sidebar-profile">
+                <img src="image/0.jpg" id="sideUserImg" alt="Profile">
+                <div class="profile-info">
+                    <h3 id="sideUserName">جاري التحميل...</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="sideUserAddress">العنوان</span></p>
+                    <p><i class="fas fa-phone"></i> <span id="sideUserPhone">الهاتف</span></p>
+                </div>
+            </div>
+            <hr style="border: 0; border-top: 1px solid #333; margin: 10px 0; opacity: 0.3;">
+            <ul>
+                <li><a href="profile.html"><i class="fas fa-home"></i><p>الرئيسية</p></a></li>
+                <li><a href="chat/index.html"><i class="fa-solid fa-pen fa-bounce"></i><p>اسأل الذكاء الاصطناعي</p></a></li>
+                <li><a href="https://chat.whatsapp.com/HWIAUl4zykBFASppybWYjp" target="_blank"><i class="fa-solid fa-people-group fa-bounce"></i><p>المجموعات</p></a></li>
+                <li><a href="javascript:void(0)" onclick="renderFavorites()"><i class="fa-solid fa-heart fa-beat" style="color: #e91e63;"></i><p>المفضلة</p></a></li>
+                <li><a href="javascript:void(0)" id="logoutBtn"><i class="fa-solid fa-right-from-bracket fa-flip"></i><p>تسجيل الخروج</p></a></li>
+            </ul>    
+        </aside>
+
+        <main class="main-body">
+            <div class="main-slider">
+                <div class="slides">
+                    <img src="image/1.png" class="slide active">
+                    <img src="image/6.png" class="slide">
+                    <img src="image/2.png" class="slide">
+                    <img src="image/7.png" class="slide">
+                    <img src="image/3.png" class="slide">
+                </div>
+                <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+
+            <div class="main-content">
+                <header class="content-header">
+                    <div class="user-welcome">أهلاً، <span id="studentNameDisplay">طالب</span></div>
+                </header>
+                <div id="foldersContainer"></div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

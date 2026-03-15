@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>مشغل الدروس - عرض كامل</title>
+    <link rel="icon" href="image/0.jpg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: #000; margin: 0; padding: 0; overflow-x: hidden;">
+    <nav class="navbar" style="position: relative; z-index: 10;">
+        <div class="logo">مذاكرة <span>اون لاين</span></div>
+        <a href="profile.html" class="logout-link" style="text-decoration: none; background: #e91e63; border: #e91e63; border-radius: 30px;">إغلاق X</a>
+    </nav>
+
+    <div class="player-container" style="width: 100vw; display: flex; flex-direction: column; align-items: center;">
+        
+        <div id="videoWrapper" style="width: 100%; max-width: 1200px; aspect-ratio: 16/9; background: #000;">
+            </div>
+        
+        <div style="width: 100%; max-width: 1200px; padding: 20px; box-sizing: border-box; text-align: right;">
+            <h1 id="vTitle" style="color: white; margin: 10px 0; font-size: clamp(18px, 4vw, 28px);"></h1>
+            <p id="vSubject" style="color: #e91e63; font-weight: bold; font-size: 18px; margin: 0;"></p>
+            <hr style="border: 0; border-top: 1px solid #222; margin: 20px 0;">
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const videoUrl = localStorage.getItem('play_url');
+            const title = localStorage.getItem('play_title');
+            const subject = localStorage.getItem('play_subject');
+
+            if (videoUrl) {
+                const wrapper = document.getElementById('videoWrapper');
+                
+                // إضافة متغيرات لليوتيوب تمنع إظهار الفيديوهات المقترحة وتجعل التشغيل تلقائي
+                const cleanUrl = videoUrl + "?rel=0&autoplay=1";
+
+                wrapper.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="${cleanUrl}" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        style="border: none; width: 100%; height: 100%;">
+                    </iframe>
+                `;
+                
+                document.getElementById('vTitle').innerText = title;
+                document.getElementById('vSubject').innerText = subject;
+            }
+        }
+    </script>
+</body>
+</html>
